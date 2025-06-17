@@ -2,7 +2,7 @@
 
 using LiskovPrinciple;
 
-IShippingProvider provider = new LocalCourier();
+ShippingProvider provider = new LocalCourier();
 provider.Ship("ORDER123");
 provider.Track("TRACK123");
 provider.Cancel("ORDER123");

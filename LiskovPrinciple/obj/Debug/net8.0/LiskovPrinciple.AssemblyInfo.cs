@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LiskovPrinciple")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f0f3e81f3dd785cf79ca9c02473a4764853027c")]
 [assembly: System.Reflection.AssemblyProductAttribute("LiskovPrinciple")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LiskovPrinciple")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

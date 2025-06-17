@@ -30,57 +30,58 @@ namespace LiskovPrinciple;
    وعايزين نعمل design يخلينا نقدر نستخدم أي شركة منهم مع الـ client من غير ما يوقعنا في مشاكل."
  
  */
-public interface IShippingProvider
+public abstract class ShippingProvider
 {
-     void Ship(string order);
-      void Track(string trackingNumber);
-     void Cancel(string trackingNumber);
+    public abstract void  Ship(string order);
+    public abstract void  Track(string trackingNumber);
+    public abstract void  Cancel(string trackingNumber);
 }
 
-public class DHL : IShippingProvider
+public class DHL : ShippingProvider
 {
-    public  void Ship(string order) => Console.WriteLine("DHL shipped");
-    public  void Track(string trackingNumber) => Console.WriteLine("DHL tracking");
-    public  void Cancel(string trackingNumber) => Console.WriteLine("DHL cancelled");
+    public override void Ship(string order) => Console.WriteLine("DHL shipped");
+    public override void Track(string trackingNumber) => Console.WriteLine("DHL tracking");
+    public override void Cancel(string trackingNumber) => Console.WriteLine("DHL cancelled");
 }
 
-public class Aramex : IShippingProvider
+
+public class Aramex : ShippingProvider
 {
-    public  void Ship(string order) => Console.WriteLine("Aramex shipped");
-    public  void Track(string trackingNumber) => Console.WriteLine("Aramex tracking");
-    public  void Cancel(string trackingNumber) =>
+    public override  void Ship(string order) => Console.WriteLine("Aramex shipped");
+    public override  void Track(string trackingNumber) => Console.WriteLine("Aramex tracking");
+    public override  void Cancel(string trackingNumber) =>
         throw new NotImplementedException("Aramex does not support cancel via API");
 }
 
-public class LocalCourier : IShippingProvider
+public class LocalCourier : ShippingProvider
 {
-    public  void Ship(string order) => Console.WriteLine("LocalCourier shipped");
-    public  void Track(string trackingNumber) =>
+    public override void Ship(string order) => Console.WriteLine("LocalCourier shipped");
+    public override void Track(string trackingNumber) =>
         throw new NotImplementedException("LocalCourier does not support tracking");
-    public  void Cancel(string trackingNumber) =>
+    public override void Cancel(string trackingNumber) =>
         throw new NotImplementedException("LocalCourier does not support cancel");
 }
 
 
 
 
-public class DHL2 : INewShippingProvider, ICancelable
+public class DHL2 : CancelableShippingProvider
 {
-    public void Ship(string order) => Console.WriteLine("DHL shipped");
-    public void Track(string trackingNumber) => Console.WriteLine("DHL tracking");
-    public void Cancel(string trackingNumber) => Console.WriteLine("DHL cancelled");
+    public override void Ship(string order) => Console.WriteLine("DHL shipped");
+    public override void Track(string trackingNumber) => Console.WriteLine("DHL tracking");
+    public override  void Cancel(string orderNumber) => Console.WriteLine("DHL cancelled");
 }
 
-public class Aramex2 : INewShippingProvider, ICancelable
+public class Aramex2 : CancelableShippingProvider
 {
-    public void Ship(string order) => Console.WriteLine("Aramex shipped");
-    public void Track(string trackingNumber) => Console.WriteLine("Aramex tracking");
-    public void Cancel(string trackingNumber) => Console.WriteLine("Aramex cancelled");
+    public override void Ship(string order) => Console.WriteLine("Aramex shipped");
+    public override void Track(string trackingNumber) => Console.WriteLine("Aramex tracking");
+    public override  void Cancel(string orderNumber) => Console.WriteLine("Aramex cancelled");
 }
 
 
-public class LocalCourier2 : INewShippingProvider
+public class LocalCourier2 : NewShippingProvider
 {
-    public void Ship(string order) => Console.WriteLine("LocalCourier shipped");
-    public void Track(string trackingNumber) => Console.WriteLine("LocalCourier tracking");
+    public override void Ship(string order) => Console.WriteLine("LocalCourier shipped");
+    public override void Track(string trackingNumber) => Console.WriteLine("LocalCourier tracking");
 }
